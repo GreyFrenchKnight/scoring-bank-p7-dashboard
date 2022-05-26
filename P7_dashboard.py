@@ -88,8 +88,10 @@ def load_data():
 def get_client(db_test):
     """Sélection d'un client via une selectbox"""
 
-    selectbox_values = [''] + list(db_test['SK_ID_CURR'].copy())    
-    client = st.sidebar.selectbox(label='', options=selectbox_values, index=0, format_func=lambda x: DEFAULT if x == '' else x, key="selected_client")
+    selectbox_values = db_test['SK_ID_CURR'].copy()
+    selectbox_values.loc[len(selectbox_values.index)] = ['']
+
+    client = st.sidebar.selectbox(label='', options=list(selectbox_values), index=0, format_func=lambda x: DEFAULT if x == '' else x, key="selected_client")
     
     if client:
         idx_client = db_test.index[db_test['SK_ID_CURR'] == client][0]

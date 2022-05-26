@@ -11,10 +11,8 @@ Dashboard du projet P7 Scoring Bank
 * [project folder pathname] > python -m venv venv
 * [project folder pathname] > CALL venv/Scripts/activate.bat
 * [project folder pathname] > python -m pip install --upgrade pip
-* [project folder pathname] > pip install numpy pandas shap matplotlib seaborn streamlit
+* [project folder pathname] > pip install numpy pandas shap matplotlib seaborn
 * [project folder pathname] > pip freeze > requirements.txt
-
-* Change the following line in requirements.txt : pywin32==304;platform_system == "Windows"
 
 #### Step 3. Initiate GIT in the project folder
 * [project folder pathname] > git init
