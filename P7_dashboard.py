@@ -88,10 +88,8 @@ def load_data():
 def get_client(db_test):
     """Sélection d'un client via une selectbox"""
 
-    selectbox_values = db_test['SK_ID_CURR'].copy()
-    selectbox_values.loc[len(selectbox_values.index)] = ['']
-
-    client = st.sidebar.selectbox(label='', options=list(selectbox_values), index=0, format_func=lambda x: DEFAULT if x == '' else x, key="selected_client")
+    selectbox_values = [''] + list(db_test['SK_ID_CURR'].copy())    
+    client = st.sidebar.selectbox(label='', options=selectbox_values, index=0, format_func=lambda x: DEFAULT if x == '' else x, key="selected_client")
     
     if client:
         idx_client = db_test.index[db_test['SK_ID_CURR'] == client][0]
@@ -146,14 +144,14 @@ def tab_client(db_test, features_for_dashboard_table):
     
     #Affichage du dataframe selon les filtres définis
     db_display = db_test[features_for_dashboard_table].copy()    
-    db_display['YEARS_BIRTH'] = db_display['YEARS_BIRTH'].astype(str)
-    db_display['CNT_CHILDREN'] = db_display['CNT_CHILDREN'].astype(str)
-    db_display['AMT_INCOME_TOTAL'] = db_display['AMT_INCOME_TOTAL'].apply(lambda x: int(x))
-    db_display['AMT_CREDIT'] = db_display['AMT_CREDIT'].apply(lambda x: int(x))
-    db_display['AMT_ANNUITY'] = db_display['AMT_ANNUITY'].apply(lambda x: x if pd.isna(x) else int(x))
-    db_display['AMT_INCOME_TOTAL'] = db_display['AMT_INCOME_TOTAL'].apply(lambda x: x if pd.isna(x) else int(x))
-    db_display['AMT_CREDIT'] = db_display['AMT_CREDIT'].apply(lambda x: x if pd.isna(x) else int(x))
-    db_display['AMT_ANNUITY'] = db_display['AMT_ANNUITY'].apply(lambda x: x if pd.isna(x) else int(x))
+    db_display.loc['YEARS_BIRTH'] = db_display['YEARS_BIRTH'].astype(str)
+    db_display.loc['CNT_CHILDREN'] = db_display['CNT_CHILDREN'].astype(str)
+    db_display.loc['AMT_INCOME_TOTAL'] = db_display['AMT_INCOME_TOTAL'].apply(lambda x: int(x))
+    db_display.loc['AMT_CREDIT'] = db_display['AMT_CREDIT'].apply(lambda x: int(x))
+    db_display.loc['AMT_ANNUITY'] = db_display['AMT_ANNUITY'].apply(lambda x: x if pd.isna(x) else int(x))
+    db_display.loc['AMT_INCOME_TOTAL'] = db_display['AMT_INCOME_TOTAL'].apply(lambda x: x if pd.isna(x) else int(x))
+    db_display.loc['AMT_CREDIT'] = db_display['AMT_CREDIT'].apply(lambda x: x if pd.isna(x) else int(x))
+    db_display.loc['AMT_ANNUITY'] = db_display['AMT_ANNUITY'].apply(lambda x: x if pd.isna(x) else int(x))
     
     # filtering
     db_display = filter(db_display,'CODE_GENDER', sex)
@@ -236,15 +234,15 @@ def chart_bar(title,  row,  df,  col,  idx_client=None):
     
 def filter(df, col, value):
     '''Fonction pour filtrer le dataframe selon la colonne et la valeur définies'''
-    if value!='All':
+    if value != 'All':
         # 1 value or tuple value
         if type(value) is tuple:
             # tuple for numeric, use of min/max
-            db_filtered=df.loc[(df[col] >= value[0]) & (df[col] <= value[1])]
+            db_filtered = df.loc[(df[col] >= value[0]) & (df[col] <= value[1])]
         else:
-            db_filtered=df.loc[df[col]==value]
+            db_filtered = df.loc[df[col] == value]
     else:
-        db_filtered=df
+        db_filtered = df
     return db_filtered
 
 
@@ -304,7 +302,6 @@ def main():
     
     st.title(main_title)
     st.caption("<font color=green>**Connecté à l\'API :**</font> " + api_url, True)
-    st.write(api_url)
     
     tab_client(db_test, features_for_dashboard_table)
     client, idx_client = get_client(db_test)
