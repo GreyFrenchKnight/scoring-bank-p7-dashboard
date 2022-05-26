@@ -1,10 +1,9 @@
 # scoring-bank-p7-dashboard
 Dashboard du projet P7 Scoring Bank
 * https://docs.streamlit.io/streamlit-cloud/get-started/deploy-an-app
+#### Web application deployed at: https://share.streamlit.io/greyfrenchknight/scoring-bank-p7-dashboard/main/P7_dashboard.py
 
-**https://docs.streamlit.io/streamlit-cloud/get-started/deploy-an-app
-**https://towardsdatascience.com/a-quick-tutorial-on-how-to-deploy-your-streamlit-app-to-heroku-874e1250dadd
-#### Step 1. Create a new app on Streamlit/Heroku "scoring-bank-p7-dashboard"
+#### Step 1. Create a new app on Streamlit "scoring-bank-p7-dashboard"
 
 #### Step 2. Initiate Project Folder on Local PC
 * Test before commit
@@ -21,15 +20,9 @@ Dashboard du projet P7 Scoring Bank
 * [project folder pathname] > git add .
 * [project folder pathname] > git commit -m "first commit"
 
-** [project folder pathname] > heroku login
-** [project folder pathname] > heroku create scoring-bank-p7-dashboard
-** [project folder pathname] > git push heroku main
+#### Step 4. Deploy app
+To deploy an app, click "New app" from the upper right corner of your workspace, then fill in your repo, branch, and file path, and click "Deploy". As a shortcut, you can also click "Paste GitHub URL".
+![deployment_streamlit](https://github.com/GreyFrenchKnight/scoring-bank-p7-dashboard/blob/f0df22a5040b12fc0506d47cf5d2a262e201c95d/streamlit_deployment.PNG)
 
-** [project folder pathname] > heroku login
-** [project folder pathname] > heroku create scoring-bank-p7-dashboard
-** [project folder pathname] > git push heroku master
-
-#### Step 4. Testing application
-* Heroku dashboard https://dashboard.heroku.com/apps/scoring-bank-p7-dashboard
-* accessing app https://scoring-bank-p7-dashboard.herokuapp.com/
-* checking logs https://dashboard.heroku.com/apps/scoring-bank-p7-dashboard/logs
+#### Step 5. Testing application
+* accessing app https://share.streamlit.io/greyfrenchknight/scoring-bank-p7-dashboard/main/P7_dashboard.py

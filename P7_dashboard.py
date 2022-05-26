@@ -301,13 +301,13 @@ def main():
     st.sidebar.title('Sélection Client')
     
     st.title(main_title)
+    st.caption("<font color=green>**Connecté à l\'API :**</font> " + api_url, True)
+    st.write(api_url)
+    
     tab_client(db_test, features_for_dashboard_table)
     client, idx_client = get_client(db_test)
     infos_client(db_test, client, idx_client)
     comparaison(db_test, idx_client)
-    
-    st.caption("<font color=green>**Connecté à l\'API :**</font>", True)
-    st.write(api_url)
     
     if idx_client >= 0:
         score_viz(db_test, idx_client, features_for_model_prediction, shap_values, exp_value)
