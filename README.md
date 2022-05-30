@@ -1,12 +1,13 @@
 # scoring-bank-p7-dashboard
 Dashboard of P7 Scoring Bank
+
 https://docs.streamlit.io/streamlit-cloud/get-started/deploy-an-app
+
 #### Web application deployed at: https://share.streamlit.io/greyfrenchknight/scoring-bank-p7-dashboard/main/P7_dashboard.py
 
 #### Step 1. Create a new app on Streamlit "scoring-bank-p7-dashboard"
 
 #### Step 2. Initiate Project Folder on Local PC
-Test before commit
 ```
 [any folder pathname] > cd [project folder pathname]
 [project folder pathname] > python -m venv venv
@@ -14,10 +15,15 @@ Test before commit
 [project folder pathname] > python -m pip install --upgrade pip
 [project folder pathname] > pip install numpy pandas shap matplotlib seaborn
 [project folder pathname] > pip freeze > requirements.txt
+```
+
+Develop the functionnalities inside a python file.
+```
 [project folder pathname] > streamlit run P7_dashboard.py
 ```
 
 #### Step 3. Initiate GIT in the project folder
+Test before commit.
 ```
 [project folder pathname] > git init
 [project folder pathname] > git add .
