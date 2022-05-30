@@ -21,6 +21,8 @@ from PIL import Image
 # Basic URL
 # http://localhost:8501/
 
+# logo #EFE9CE
+
 st.set_page_config(layout='wide')
 
 main_title = 'Dashboard Pret à dépenser'
@@ -28,7 +30,7 @@ first_page = 'Tous les clients'
 second_page = 'Score Client'
 third_page = 'Comparaison Clients'
 
-DEFAULT = '< PICK A CLIENT SK_ID_CURR >'
+DEFAULT = '< SK_ID_CURR >'
 
 def readFileToList(filepath, label):
     # opening the file in read mode
@@ -274,9 +276,12 @@ def score_viz(db_test, idx_client, features_for_model_prediction, shap_values, e
     features_client = features_client.reset_index(drop=True)
     feature_names = response["feature_names"]    
     
-    st.caption("**Score :** \t{}".format(y_pred))
-    st.caption("**Crédit :** \t{}".format(decision))
-    
+    st.caption("<font size=5 color='#53107F'>**Score :** \t **{}**</font>".format(y_pred), True)
+    if decision == "Approuvé":
+        st.caption("<font size=5 color=green>**Crédit :** \t **{}**</font>".format(decision), True)
+    else:
+        st.caption("<font size=5 color=‘#ff2624’>**Crédit :** \t **{}**</font>".format(decision), True)
+            
     # SHAP plot
     st.subheader("Graphique SHAP")
     st_shap(shap.force_plot(exp_value, shap_values[idx_client], features=features_client, feature_names=feature_names, figsize=(12,5)))
@@ -301,15 +306,16 @@ def main():
     st.sidebar.title('Sélection Client')
     
     st.title(main_title)
-    st.caption("<font color=green>**Connecté à l\'API :**</font> " + api_url, True)
+    st.caption("<font color='#53107F'>**Connecté à l\'API :**</font> " + api_url, True)
     
     tab_client(db_test, features_for_dashboard_table)
     client, idx_client = get_client(db_test)
     infos_client(db_test, client, idx_client)
-    comparaison(db_test, idx_client)
     
     if idx_client >= 0:
         score_viz(db_test, idx_client, features_for_model_prediction, shap_values, exp_value)
+        
+    comparaison(db_test, idx_client)
         
 
 if __name__ == '__main__':
